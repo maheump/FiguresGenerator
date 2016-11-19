@@ -90,9 +90,19 @@ for i = 1:Nsimu
     %  ==================================
     
     if iterplot || i == Nsimu
-        F1;  cla; hold('on');
-        fill([0,x,1], [0,betapdf(x, nansum(DumbWins  == 1)+1, nansum(DumbWins  == 0)+1),0], 'b-', 'LineWidth', 2, 'FaceAlpha', 0.5);
-        fill([0,x,1], [0,betapdf(x, nansum(SmartWins == 1)+1, nansum(SmartWins == 0)+1),0], 'r-', 'LineWidth', 2, 'FaceAlpha', 0.5);
+        
+        % Derive beliefs in the probability of winning the car
+        D = betapdf(x, nansum(DumbWins  == 1) + 1, nansum(DumbWins  == 0) + 1);
+        S = betapdf(x, nansum(SmartWins == 1) + 1, nansum(SmartWins == 0) + 1);
+        
+        % Normalize it
+        D = D ./ nansum(D);
+        S = S ./ nansum(S);
+        
+        % Display the results
+        F1; cla; hold('on');
+        fill([0,x,1], [0,D,0], 'b-', 'LineWidth', 2, 'FaceAlpha', 0.5);
+        fill([0,x,1], [0,S,0], 'r-', 'LineWidth', 2, 'FaceAlpha', 0.5);
         plot(1/Ndoors, 0, 'ko', 'MarkerFaceColor', 'b', 'MarkerSize', 15, 'LineWidth', 2);
         plot(1/(Ndoors-1), 0, 'ko', 'MarkerFaceColor', 'r', 'MarkerSize', 15, 'LineWidth', 2);
         legend({'Dumb player: always stick to its first choice', ...

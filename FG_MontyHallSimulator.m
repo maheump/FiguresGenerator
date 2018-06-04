@@ -33,7 +33,7 @@ DumbWins  = NaN(1,Nsimu);
 SmartWins = NaN(1,Nsimu);
 
 % Prepare the figure
-F1 = figure;
+F1 = figure('Color', ones(1,3));
 x = 0:0.001:1;
 set(gca, 'XTick', 0:0.1:1, 'LineWidth', 1, 'FontSize', 18, 'Box', 'Off', 'Layer', 'Bottom');
 xlabel('Probability of winning the car');
@@ -117,7 +117,7 @@ for i = 1:Nsimu
     
     if dispoutp
         fprintf('- Simulation %3i: ', i);
-        fprintf('dumb player %ss (%g%%), ', lower(Outcomes{DumbWins(i)+1}), nanmean(DumbWins  == 1)*100);
-        fprintf('smart player %ss (%g%%).\n', lower(Outcomes{SmartWins(i)+1}), nanmean(SmartWins  == 1)*100);
+        fprintf('dumb player %ss (%g%%), ', lower(Outcomes{DumbWins(i)+1}), nanmean(DumbWins==1)*100);
+        fprintf('smart player %ss (%g%%).\n', lower(Outcomes{SmartWins(i)+1}), nanmean(SmartWins==1)*100);
     end
 end

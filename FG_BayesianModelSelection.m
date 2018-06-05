@@ -57,6 +57,7 @@ for iSub = 1:nSub
     
     % Data versus preditions from model 1
     subplot(4,5,iSub);
+    yyaxis('left');
     plot(Y(:,iSub), Yhat(:,iSub,1), '.'); lsline;
     ylim([min(Yhat(:)), max(Yhat(:))]);
     
@@ -74,7 +75,7 @@ end
 %   - >> empbayes = true; % estimate priors using empirical Bayes
 %   - >> empbayes = false; % rely on user-defined priors
 %   - >> empbayes = []; % rely on the frequentist limit 
-empbayes = false;
+empbayes = [];
 
 % Rely on the frequentist limit to estimate the log-evidence of a GLM
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

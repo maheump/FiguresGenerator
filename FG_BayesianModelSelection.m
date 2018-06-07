@@ -146,7 +146,7 @@ for iSub = 1:nSub
     end
 end
 
-% Use free energy as a 
+% Use free energy as an approximation of the log-evidence
 L = cellfun(@(x) x.F, out);
 
 % Estimate priors using empirical Bayes
